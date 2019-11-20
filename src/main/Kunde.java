@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 public class Kunde {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id", columnDefinition="serial")
 	private int id;
 	

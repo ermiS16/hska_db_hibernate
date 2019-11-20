@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
 
 public class Flug {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id", columnDefinition="serial")
 	private int id;
 	
