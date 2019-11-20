@@ -12,6 +12,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Min;
 
 import org.hibernate.validator.internal.util.privilegedactions.GetInstancesFromServiceLoader;
 
@@ -21,7 +22,7 @@ import org.hibernate.validator.internal.util.privilegedactions.GetInstancesFromS
 
 public class Buchung {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id", columnDefinition="serial")
 	private int id;
 	
@@ -37,6 +38,7 @@ public class Buchung {
 	@Temporal(TemporalType.DATE)
 	private Date date;
 	
+	@Min(1)
 	@Column(name="seats", nullable=false)
 	private int amountSeats;
 
@@ -88,7 +90,7 @@ public class Buchung {
 		return "Buchungsnummer: " + getId()
 		+ "\nKunde: " + customer.getFirstName() + " " + customer.getLastName()
 		+ "\nFlug: " + flight.getFlightNumber()
-		+ "\nDepartureTime: " + flight.getDepartureAirport()
+		+ "\nDepartureTime: " + flight.getDepartureDate()
 		+ "\nAmount Seats: " + getAmountSeats()
 		+ "\nDatum: " + getDate();
 		

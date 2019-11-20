@@ -31,16 +31,12 @@ public class Kunde {
 	private String email;
 	
 	@OneToMany(cascade=CascadeType.ALL)
-	private Set<Flug> flights;
-	
-	@OneToMany(cascade=CascadeType.ALL)
 	private Set<Buchung> orders;
 	
 	public Kunde(String firstName, String lastName, String email) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.flights = new HashSet<Flug>();
 		this.orders = new HashSet<Buchung>();
 	}
 	

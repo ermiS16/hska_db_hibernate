@@ -42,23 +42,25 @@ public class JPAApplication {
 		
 		em.getTransaction().begin();		
 		Flug flight1 = new Flug("abc123", departureDate, "Karlsruhe");
-		em.persist(flight1);
 		Flug flight2 = new Flug("def456", departureDate2, "Stuttgart");
-		em.persist(flight2);
 		
 		Kunde customer1 = new Kunde("Vladimir", "Putin", "vladimir@putin.de");
 		Kunde customer2 = new Kunde("Donald", "Trump", "donald@trump.com");
 		Kunde customer3 = new Kunde("Angela", "Merkel", "angela@merkel.de");
 		
 		customer1.setOrder(new Buchung(customer1, flight1, orderTime, 2));		
-		customer1.setOrder(new Buchung(customer1, flight2, orderTime, 2));
+		customer1.setOrder(new Buchung(customer1, flight2, orderTime, 1));
 		em.persist(customer1);
 		customer2.setOrder(new Buchung(customer2, flight2, orderTime, 2));
 		em.persist(customer2);
 		customer3.setOrder(new Buchung(customer3, flight1, orderTime, 2));
 		em.persist(customer3);		
 		
-		em.getTransaction().commit();
+		try {
+			em.getTransaction().commit();			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void printOrders(EntityManager em) {
